@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect
+import urllib.parse
 
 app = Flask(__name__)
 
@@ -15,7 +16,7 @@ class JsonLoader:
 
 
 json_value = JsonLoader('../config.json').load_json()
-preferred_port_number = json_value['server']['preferred_port_number']
+port_number = json_value['server']['port_number']
 
 
 def lang_codes_checker(upper=False):
@@ -28,18 +29,18 @@ def lang_codes_checker(upper=False):
     return lang_codes
 
 
-@app.route('/')
+@app.route('/google/')
 def get_request():
     contents = request.args.get('q', '')
     from translator import Translator
     translated_content = Translator(contents).deepl_translate()
-    domain = f'https://www.google.com/search?q={translated_content}&gl=us&hl=en&gws_rd=cr&pws=0'
+    domain = f'https://www.google.com/search?q={urllib.parse.quote_plus(str(translated_content))}&gl=us&hl=en&gws_rd=cr&pws=0'
     return redirect(domain)
 
 
 if __name__ == "__main__":
-    if preferred_port_number:
+    if port_number:
         try:
-            app.run(port=preferred_port_number, debug=False)
+            app.run(port=port_number, debug=False)
         except OSError:
             print('Oops! The port number may be duplicated. Please check config.json')

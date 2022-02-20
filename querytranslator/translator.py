@@ -12,8 +12,8 @@ class Translator:
         self.content = text
 
     def deepl_lang_checker(self):
-        deepl_target_lang = self.config['translation_source']['deepl_translate']['target_lang'],
-        deepl_source_lang = self.config['translation_source']['deepl_translate']['source_lang']
+        deepl_target_lang = self.config['translate']['deepl']['target_lang'],
+        deepl_source_lang = self.config['translate']['deepl']['source_lang']
 
         deepl_target_lang = deepl_target_lang[0]
         deepl_source_lang = deepl_source_lang[1]
@@ -47,7 +47,7 @@ class Translator:
     def deepl_translate(self):
         import deepl
         self.deepl_lang_checker()
-        api_key = self.config['translation_source']['deepl_translate']['api_key']
+        api_key = self.config['translate']['deepl']['api_key']
         self.translated_content = deepl.Translator(api_key).translate_text(self.content,
                                                                            target_lang=self.target_lang,
                                                                            source_lang=self.source_lang)
