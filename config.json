@@ -1,16 +1,20 @@
 {
-    "translation_source": {
-        "utilize": "deepl_translate",
-        "deepl_translate": {
+    "translate": {
+        "deepl": {
             "api_key": "835e4179-2f70-88d5-cec7-3d2469285dbb:fx",
             "target_lang": "EN",
             "source_lang": "JA"
         }
     },
+
     "server": {
-        "preferred_port_number": 8041
+        "port_number": 8041
     },
-    "search_engine": {
-        "site": "google"
+
+    "sites": {
+        "google": {
+            "url": "google.com",
+            "source": "deepl"
+        }
     }
 }

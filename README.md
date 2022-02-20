@@ -8,23 +8,24 @@
 ```
 ### Config params
 All settings are managed by `config.json`.  
-The default settings are as follows: 
+The default settings are as follows:
+
 ```json
 {
-    "translation_source": {
-        "utilize": "deepl_translate",
-        "deepl_translate": {
-            "api_key": "xxx",
-            "target_lang": "EN",
-            "source_lang": "JA"
-        }
-    },
-    "server": {
-        "preferred_port_number": 8041
-    },
-    "search_engine": { 
-        "site": "google"
+  "translation_source": {
+    "utilize": "deepl_translate",
+    "deepl_translate": {
+      "api_key": "xxx",
+      "target_lang": "EN",
+      "source_lang": "JA"
     }
+  },
+  "server": {
+    "port_number": 8041
+  },
+  "search_engine": {
+    "site": "google"
+  }
 }
 ```
 
