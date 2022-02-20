@@ -1,31 +1,41 @@
 # QueryTranslator
 ### Usage
 ### Search params
+#### Using @ (at signs) 
 ```
-- Specify the target/source language
-    The brown fox jumps @ja
-    @en 茶色いきつねは飛び跳ねる 
+Search within the specified site
+  - search query @site_name (e.g. Who is the founder of GitHub? @techcrunch)
+Search without translation
+  - search query @not (e.g. Wer ist der Gründer von GitHub? @not @techcrunch)
 ```
+The at sign params will work anywhere in the entire search query.  
+If you want to enter the at sign, type `\@`.
 ### Config params
 All settings are managed by `config.json`.  
 The default settings are as follows:
 
 ```json
 {
-  "translation_source": {
-    "utilize": "deepl_translate",
-    "deepl_translate": {
-      "api_key": "xxx",
-      "target_lang": "EN",
-      "source_lang": "JA"
+    "translate": {
+        "deepl": {
+            "api_key": "835e4179-2f70-88d5-cec7-3d2469285dbb:fx",
+            "target_lang": "EN",
+            "source_lang": "JA"
+        }
+    },
+
+    "server": {
+        "port_number": 8041
+    },
+
+    "sites": {
+        "default_site": "google",
+        "google": {
+            "url": "https://www.google.com/search?q=%query",
+            "aka": ["g", "go", "ggle", "googl", "gogle", "ggrks"],
+            "translation_source": "deepl"
+        }
     }
-  },
-  "server": {
-    "port_number": 8041
-  },
-  "search_engine": {
-    "site": "google"
-  }
 }
 ```
 
