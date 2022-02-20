@@ -1,5 +1,7 @@
 from flask import Flask, request, redirect
 import urllib.parse
+from pathlib import Path
+import os
 
 app = Flask(__name__)
 
@@ -15,14 +17,15 @@ class JsonLoader:
         return config_json
 
 
-json_value = JsonLoader('../config.json').load_json()
+config_json_path = Path(__file__).parents[1]/'config.json'
+json_value = JsonLoader(config_json_path).load_json()
 port_number = json_value['server']['port_number']
 
 
 class Translator:
     def __init__(self,
                  text):
-        self.config = JsonLoader('../config.json').load_json()
+        self.config = JsonLoader(config_json_path).load_json()
 
         self.source_lang = None
         self.target_lang = None
@@ -65,8 +68,7 @@ class Translator:
     def deepl_translate(self):
         import deepl
         self.deepl_lang_checker()
-        api_key = self.config['translate']['deepl']['api_key']
-        self.translated_content = deepl.Translator(api_key).translate_text(self.content,
+        self.translated_content = deepl.Translator(os.getenv("QUERY_TRANSLATOR_DEEPL_API_KEY")).translate_text(self.content,
                                                                            target_lang=self.target_lang,
                                                                            source_lang=self.source_lang)
         return self.translated_content
@@ -80,7 +82,7 @@ class Translator:
 
 def lang_codes_checker(upper=False):
     import pickle
-    f = open("./langcodes.txt", "rb")
+    f = open(Path(__file__).parents[0]/"langcodes.txt", "rb")
     lang_codes = pickle.load(f)
     if upper:
         for i in range(len(lang_codes)):
