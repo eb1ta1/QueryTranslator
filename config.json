@@ -12,9 +12,15 @@
     },
 
     "sites": {
+        "default_site": "google",
         "google": {
-            "url": "google.com",
-            "source": "deepl"
+            "url": "https://www.google.com/search?q=%query",
+            "aka": ["g", "go", "ggle", "googl", "gogle", "ggrks"],
+            "translation_source": "deepl"
+        },
+        "twitter": {
+            "url": "https://twitter.com/search?q=%query",
+            "translation_source": "deepl"
         }
     }
 }
