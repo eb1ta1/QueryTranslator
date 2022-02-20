@@ -32,16 +32,15 @@ The default settings are as follows:
     "server": {
         "port_number": 8041
     },
-
-    "sites": {
-        "default_site": "google",
-        "google": {
-            "url": "https://www.google.com/search?q=%query",
-            "aka": ["g", "go", "ggle", "googl", "gogle", "ggrks"],
-            "translation_source": "deepl"
-        }
+    
+   "sites": {
+        "default_site": "example",
+        "example": {
+	        "url": "https://example.com/search?word=%s"
+    	}
     }
 }
+
 ```
 
 #### Parameter options

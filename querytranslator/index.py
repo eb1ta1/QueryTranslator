@@ -68,9 +68,10 @@ class Translator:
     def deepl_translate(self):
         import deepl
         self.deepl_lang_checker()
-        self.translated_content = deepl.Translator(os.getenv("QUERY_TRANSLATOR_DEEPL_API_KEY")).translate_text(self.content,
-                                                                           target_lang=self.target_lang,
-                                                                           source_lang=self.source_lang)
+        translator = deepl.Translator(os.environ["QUERY_TRANSLATOR_DEEPL_API_KEY"])
+        self.translated_content = translator.translate_text(self.content,
+                                                            target_lang=self.target_lang,
+                                                            source_lang=self.source_lang)
         return self.translated_content
 
     def google_cloud_translate(self):
@@ -106,7 +107,6 @@ def check_query(query):
             new_query_list.append(query_list[i])
 
     query = ' '.join(new_query_list)
-    print(query)
 
     if not_flag:
         content = urllib.parse.quote_plus(query)
@@ -123,9 +123,9 @@ def get_request():
     if not site_query_list[-1] in json_value['sites'].keys():
         content = f'{content} \'{site_query_list[-1]}\''
         default_site = json_value['sites']['default_site']
-        url = str(json_value['sites'][default_site]['url']).replace('%query', content)
+        url = str(json_value['sites'][default_site]['url']).replace('%s', content)
     else:
-        url = str(json_value['sites'][site_query_list[-1]]['url']).replace('%query', content)
+        url = str(json_value['sites'][site_query_list[-1]]['url']).replace('%s', content)
     return redirect(url)
 
 
@@ -133,7 +133,7 @@ def get_request():
 def get_request_specific_site(site_name):
     query = request.args.get('q', '')
     content, site_query_list = check_query(query)
-    url = str(json_value['sites'][site_name]['url']).replace('%query', content)
+    url = str(json_value['sites'][site_name]['url']).replace('%s', content)
     return redirect(url)
 
 

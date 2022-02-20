@@ -10,12 +10,16 @@
         "port_number": 8041
     },
 
-    "sites": {
+   "sites": {
         "default_site": "google",
         "google": {
-            "url": "https://www.google.com/search?q=%query",
-            "aka": ["g", "go", "ggle", "googl", "gogle", "ggrks"],
-            "translation_source": "deepl"
-        }
+            "url": "https://www.google.com/search?q=%s"
+        },
+        "twitter": {
+            "url": "https://twitter.com/search?q=%s"
+        },
+        "example.com": {
+	        "url": "https://example.com/search?word=%s"
+    	}
     }
 }
