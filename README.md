@@ -1,5 +1,11 @@
 # QueryTranslator
 ### Usage
+```bash
+$ git clone git@github.com:eb1ta1/QueryTranslator.git
+$ pip install -r requirements.txt
+$ export QUERY_TRANSLATOR_DEEPL_API_KEY=********-****-****-****-************:**
+$ python3 ~/QueryTranslator/querytranslator/index.py
+```
 ### Search params
 #### Using @ (at signs) 
 ```
@@ -18,7 +24,6 @@ The default settings are as follows:
 {
     "translate": {
         "deepl": {
-            "api_key": "835e4179-2f70-88d5-cec7-3d2469285dbb:fx",
             "target_lang": "EN",
             "source_lang": "JA"
         }

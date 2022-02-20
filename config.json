@@ -1,7 +1,6 @@
 {
     "translate": {
         "deepl": {
-            "api_key": "835e4179-2f70-88d5-cec7-3d2469285dbb:fx",
             "target_lang": "EN",
             "source_lang": "JA"
         }
@@ -16,10 +15,6 @@
         "google": {
             "url": "https://www.google.com/search?q=%query",
             "aka": ["g", "go", "ggle", "googl", "gogle", "ggrks"],
-            "translation_source": "deepl"
-        },
-        "twitter": {
-            "url": "https://twitter.com/search?q=%query",
             "translation_source": "deepl"
         }
     }

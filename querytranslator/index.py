@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect
 import urllib.parse
 from pathlib import Path
+import os
 
 app = Flask(__name__)
 
@@ -67,8 +68,7 @@ class Translator:
     def deepl_translate(self):
         import deepl
         self.deepl_lang_checker()
-        api_key = self.config['translate']['deepl']['api_key']
-        self.translated_content = deepl.Translator(api_key).translate_text(self.content,
+        self.translated_content = deepl.Translator(os.getenv("QUERY_TRANSLATOR_DEEPL_API_KEY")).translate_text(self.content,
                                                                            target_lang=self.target_lang,
                                                                            source_lang=self.source_lang)
         return self.translated_content
